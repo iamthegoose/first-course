@@ -106,7 +106,6 @@ def signup_user(user_request: UserSignupRequest, request: Request):
         return JSONResponse(status_code=201, content={"message": "Користувач створений успішно!", "token": token})
 
 
-
 @app.post("/user/signin")
 def signin_user(user_request: UserSigninRequest, request: Request):
     with SessionFactory() as sess:
