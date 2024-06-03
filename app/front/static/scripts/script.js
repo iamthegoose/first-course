@@ -10,7 +10,6 @@ window.addEventListener("scroll", function () {
 });
 
 const token = localStorage.getItem("token");
-console.log(token);
 
 function handleClick(e) {
   e.preventDefault();
@@ -36,4 +35,20 @@ const itemCreateRent = document.querySelector(".menu-item-create-rent");
 
 catalogue.addEventListener("click", handleClick);
 itemRent.addEventListener("click", handleClick);
-itemCreateRent.addEventListener("click", handleClickLink);
+itemCreateRent.addEventListener("click", itemClick);
+
+// console.log("qweekrbj");
+
+// const flatsItem = document.querySelector(".flats-item");
+// console.log(flatsItem);
+// flatsItem.addEventListener("click", itemClick);
+
+// function itemClick() {
+//   console.log("qwe");
+//   const res = confirm("Орендувати цю квартиру?");
+//   if (res) {
+//     alert("Заявка подана успішно!");
+//   } else {
+//     return;
+//   }
+// }

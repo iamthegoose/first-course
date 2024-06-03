@@ -4,7 +4,7 @@
   href="{{ url_for('static', path='styles/register-styles.css')}}"
 />
 {% endblock head%} {% block body %}
-<section class="register-section">
+<section class="register-section section">
   <div class="container">
     <div class="box-register">
       <form action="" class="register-form">
@@ -14,29 +14,37 @@
           placeholder="Імʼя"
           class="register-input"
           name="name"
+          id="name"
+          required
         />
         <input
           type="text"
           placeholder="Прізвище"
           class="register-input"
           name="surname"
+          id="surname"
+          required
         />
         <input
-          type="text"
+          type="email"
           placeholder="Пошта"
           class="register-input"
           name="email"
+          id="email"
+          required
         />
         <input
-          type="text"
+          type="password"
           placeholder="Пароль"
           class="register-input"
           name="password"
+          id="password"
+          required
         />
 
         <button class="register-btn">Зареєструйтесь</button>
         <p class="register-txt">
-          Вже заареєстровані?
+          Вже зареєстровані?
           <a href="/login">Увійти</a>
         </p>
       </form>

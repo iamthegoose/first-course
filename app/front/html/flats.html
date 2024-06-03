@@ -87,6 +87,7 @@
           />
           <div class="flats-item-content">
             <p class="flats-item-text">{{ flat.description }}</p>
+            <p class="flats-item-text"><b>{{ flat.location }}</b></p>
             <p class="flats-item-text">Площа: {{ flat.area }} кв. м.</p>
             <p class="flats-item-text">Ціна: {{ flat.price }} ₴/місяць</p>
             <p class="flats-item-text">Кількість кімнат: {{ flat.rooms }}</p>
@@ -145,6 +146,23 @@
         console.error("Помилка:", error);
       }
     });
+
+
+
+   
+
+
+const flatsItem = document.querySelector(".flats-item");
+flatsItem.addEventListener("click", itemClick);
+
+function itemClick() {
+  const res = confirm("Орендувати цю квартиру?");
+  if (res) {
+    alert("Заявка подана успішно!");
+  } else {
+    return;
+  }
+}
 </script>
 
 {% endblock body %}
