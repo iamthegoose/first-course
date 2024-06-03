@@ -9,8 +9,8 @@ from app.services.connection import SessionFactory
 from app.services.security import get_password_hash, verify_password, create_access_token, get_current_user_from_token, get_current_user
 
 # repository
-from app.repositoryuser import UserRepository
-from app.repositoryflat import FlatRepository
+from app.services.repositoryuser import UserRepository
+from app.services.repositoryflat import FlatRepository
 
 # types & models
 from app.services.models.user import User

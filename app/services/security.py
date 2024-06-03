@@ -4,7 +4,7 @@ from jose import jwt
 from fastapi import Depends, Request
 from fastapi.exceptions import HTTPException
 from app.settings import settings
-from app.repositoryuser import UserRepository
+from app.services.repositoryuser import UserRepository
 from app.services.connection import SessionFactory
 from datetime import datetime, timedelta
 from app.services.models.user import User
