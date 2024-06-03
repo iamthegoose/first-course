@@ -1,0 +1,150 @@
+{% extends "base.html" %} {% block head %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', path='styles/flats-styles.css') }}"
+/>
+{% endblock head %} {% block body %}
+
+<section class="filter-section">
+  <div class="container">
+    <div class="filter">
+      <form class="filter-form" method="post">
+        <label>
+          <p class="label-txt">Загальна площа</p>
+          <div class="input-group">
+            <input
+                  type="text"
+                  placeholder="від"
+                  class="input-field"
+                  name="area_from"
+                  id="area_from"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                />
+                <input
+                  type="text"
+                  placeholder="до"
+                  class="input-field"
+                  name="area_to"
+                  id="area_to"
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                />
+          </div>
+        </label>
+
+        <label>
+          <p class="label-txt">Ціна</p>
+          <div class="input-group">
+            <input
+              type="text"
+              placeholder="від"
+              class="input-field"
+              name="price_from"
+              id="price_from"
+              inputmode="numeric"
+              pattern="[0-9]*"
+            />
+            <input
+              type="text"
+              placeholder="до"
+              class="input-field"
+              name="price_to"
+              id="price_to"
+              inputmode="numeric"
+              pattern="[0-9]*"
+            />
+          </div>
+        </label>
+
+        <label for="">
+          <p class="label-txt">Кількість кімнат</p>
+          <select class="select-form" name="rooms" id="rooms">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </label>
+
+        <button class="submit-filter-btn">Застосувати</button>
+      </form>
+    </div>
+    <hr />
+  </div>
+  <section class="section">
+  <div class="container">
+    <div id="flats-container">
+      <ul class="list-flats">
+        {% for flat in flats %}
+        <li class="flats-item">
+          <h4 class="flats-item-title">{{ flat.name }}</h4>
+          <img
+            src="{{ url_for('static', path='images/flat.jpg')}}"
+            alt="Flat Image"
+            class="flats-item-image"
+          />
+          <div class="flats-item-content">
+            <p class="flats-item-text">{{ flat.description }}</p>
+            <p class="flats-item-text">Площа: {{ flat.area }} кв. м.</p>
+            <p class="flats-item-text">Ціна: {{ flat.price }} ₴/місяць</p>
+            <p class="flats-item-text">Кількість кімнат: {{ flat.rooms }}</p>
+          </div>
+        </li>
+
+        {% endfor %}
+      </ul>
+    
+      </section>
+    </div>
+  </div>
+</section>
+<script>
+  document
+    .querySelector(".filter-form")
+    .addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      const formData = {
+        area_from: document.getElementById("area_from").value,
+        area_to: document.getElementById("area_to").value,
+        price_from: document.getElementById("price_from").value,
+        price_to: document.getElementById("price_to").value,
+        rooms: document.getElementById("rooms").value,
+      };
+
+      console.log(JSON.stringify(formData));
+
+      try {
+        const response = await fetch("/user/flats", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+
+        const html = await response.text();
+
+        const flatsContainer = document.getElementById("flats-container");
+
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = html;
+
+        const newFlatsList = tempDiv.querySelector(".list-flats");
+
+        if (newFlatsList && flatsContainer) {
+          flatsContainer.innerHTML = newFlatsList.outerHTML;
+        } else {
+          console.error(
+            "Помилка: не вдалося знайти контейнер або список квартир."
+          );
+        }
+      } catch (error) {
+        console.error("Помилка:", error);
+      }
+    });
+</script>
+
+{% endblock body %}

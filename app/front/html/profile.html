@@ -1,0 +1,33 @@
+{% extends "base.html" %} {% block head %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', path='styles/flats-styles.css') }}"
+/>
+{% endblock head %} {% block body %}
+<section class="">
+  <div class="container">
+    <h3>Мої квартири</h3>
+    <div id="flats-container">
+      <ul class="list-flats">
+        {% if flats %} {% for flat in flats %}
+        <li class="flats-item">
+          <h4 class="flats-item-title">{{ flat.name }}</h4>
+          <img
+            src="{{ url_for('static', path='images/flat.jpg')}}"
+            alt=""
+            width="300px"
+            height="150px"
+          />
+          <p class="flats-item-text">{{ flat.description }}</p>
+          <p class="flats-item-text">Площа: {{ flat.area }} кв. м.</p>
+          <p class="flats-item-text">Ціна: {{ flat.price }} ₴/місяць</p>
+          <p class="flats-item-text">Кількість кімнат: {{ flat.rooms }}</p>
+        </li>
+        {% endfor %} {% else %}
+        <p>Ви ще не маєте жодної квартири</p>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</section>
+{% endblock body %}

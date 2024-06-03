@@ -1,0 +1,46 @@
+.create-flats-section {
+  margin-top: 200px;
+}
+
+.box-create-flats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-flats-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+
+  width: 400px;
+  height: 450px;
+
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+.create-flats-input {
+  width: 300px;
+  height: 30px;
+
+  border: none;
+  padding-left: 10px;
+
+  border-bottom: solid black 1px;
+}
+
+.create-flats-btn {
+  width: 200px;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  transition: 0.3s;
+}
+
+.create-flats-btn:hover {
+  background-color: rgba(76, 75, 75, 0.2);
+}

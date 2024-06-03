@@ -1,0 +1,83 @@
+{% extends "base.html" %} {% block head %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', path='styles/register-styles.css')}}"
+/>
+{% endblock head%} {% block body %}
+<section class="register-section">
+  <div class="container">
+    <div class="box-register">
+      <form action="" class="register-form">
+        <h4 class="register-title">Зареєструйтесь</h4>
+        <input
+          type="text"
+          placeholder="Імʼя"
+          class="register-input"
+          name="name"
+        />
+        <input
+          type="text"
+          placeholder="Прізвище"
+          class="register-input"
+          name="surname"
+        />
+        <input
+          type="text"
+          placeholder="Пошта"
+          class="register-input"
+          name="email"
+        />
+        <input
+          type="text"
+          placeholder="Пароль"
+          class="register-input"
+          name="password"
+        />
+
+        <button class="register-btn">Зареєструйтесь</button>
+        <p class="register-txt">
+          Вже заареєстровані?
+          <a href="/login">Увійти</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  document
+    .querySelector(".register-form")
+    .addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      const formData = {
+        name: document.getElementById("name").value,
+        surname: document.getElementById("surname").value,
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value,
+      };
+      try {
+        const response = await fetch("/user/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+        if (response.ok) {
+          const data = await response.json();
+          const token = data.token;
+          localStorage.setItem("token", token);
+          window.location.href = `/success?token=${token}`;
+        } else {
+          const errorMessage = await response.text();
+          alert(errorMessage);
+        }
+      } catch (error) {
+        alert("Сталася помилка під час реєстрації.");
+        console.error("Error:", error);
+      }
+    });
+</script>
+
+{% endblock body %}

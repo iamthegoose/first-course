@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', path='styles/main-styles.css')}}"
+    />
+    {% block head %} {% endblock %}
+    <title>Ecstatic Estate</title>
+  </head>
+  <body>
+    <header id="header" class="top">
+      <div class="container head">
+        <a href="/">
+          <img
+            class="logo-black"
+            src="{{ url_for('static', path='images/logo.png')}}"
+            alt="Logo"
+            height="50px"
+        /></a>
+        <nav class="menu">
+          <ul class="menu-list">
+            <li class="menu-item">
+              <a class="menu-item-link menu-item-rent" href="/rent"
+                >Орендувати</a
+              >
+            </li>
+            <li class="menu-item">
+              <a
+                class="menu-item-link menu-item-create-rent"
+                href="/create-flats"
+                >Здати в оренду</a
+              >
+            </li>
+        
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    {% block body %} {% endblock %}
+
+    <footer class="footer">
+      <div class="container flex-footer">
+        <div class="footer-information">
+          <a class="information-logo-link" href=""> </a>
+          <p class="information-text">
+            Знайдіть житло, що буде підходити саме вам, тут і зараз!
+          </p>
+        </div>
+        <div class="footer-social">
+          <p class="footer-social-text">Соціальні мережі</p>
+          <ul class="footer-social-list">
+            <li>
+              <a class="footer-social-link" href="">
+                <svg class="form-icon-check" width="24" height="24">
+                  <use
+                    href="{{ url_for('static', path='images/icons/socials-icons.svg#instagram')}}"
+                  ></use>
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a class="footer-social-link" href="">
+                <svg class="form-icon-check" width="24" height="24">
+                  <use
+                    href="{{ url_for('static', path='images/icons/socials-icons.svg#twitter')}}"
+                  ></use>
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a class="footer-social-link" href="">
+                <svg class="form-icon-check" width="24" height="24">
+                  <use
+                    href="{{ url_for('static', path='images/icons/socials-icons.svg#facebook')}}"
+                  ></use>
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a class="footer-social-link" href="">
+                <svg class="form-icon-check" width="24" height="24">
+                  <use
+                    href="{{ url_for('static', path='images/icons/socials-icons.svg#linkedin')}}"
+                  ></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-user-contact">
+          <p class="footer-social-text">Підпишіться!</p>
+          <form class="footer-form">
+            <label class="footer-form-label">
+              <input
+                class="footer-form-input"
+                type="text"
+                name="footer_email"
+                placeholder="E-mail"
+              />
+            </label>
+            <button class="footer-form-btn" type="submit">
+              Підписатись
+              <svg class="footer-form-btn-icon" width="24" height="20">
+                <use
+                  href="{{ url_for('static', path='images/icons/send.svg')}}"
+                ></use>
+              </svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </footer>
+
+    <script src="{{ url_for('static', path='scripts/script.js')}}"></script>
+  </body>
+</html>

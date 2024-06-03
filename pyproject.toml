@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "back"
+version = "0.1.0"
+description = ""
+authors = ["Oleksandr Nychyk <nychyk.oleksandr@lll.kpi.ua>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.111.0"
+redis = "^5.0.4"
+pydantic-settings = "^2.2.1"
+psycopg2 = "^2.9.9"
+fastapi-users = {extras = ["sqlalchemy"], version = "^13.0.0"}
+python-jose = "^3.3.0"
+passlib = "^1.7.4"
+ruff = "^0.4.6"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.4.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

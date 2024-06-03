@@ -1,0 +1,71 @@
+{% extends "base.html" %} {% block head %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', path='styles/login-styles.css')}}"
+/>
+{% endblock head%} {% if message %}
+<script>
+  alert(message);
+</script>
+{%endif%} {% block body %}
+<section class="login-section section">
+  <div class="container">
+    <div class="login-box">
+      <form id="login-form" class="login-form" method="post">
+        <h2>Увійдіть</h2>
+        <input
+          type="email"
+          class="login-input"
+          placeholder="Електронна пошта"
+          name="email"
+          id="email"
+          required
+        />
+        <input
+          type="password"
+          class="login-input"
+          placeholder="Пароль"
+          name="password"
+          id="password"
+          required
+        />
+        <button class="login-btn">Увійти</button>
+        <p>Ще не зареєструвались? Зробіть це <a href="/signup">тут</a>!</p>
+      </form>
+    </div>
+  </div>
+</section>
+<script>
+  document
+    .querySelector(".login-form")
+    .addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      const formData = {
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value,
+      };
+      try {
+        const response = await fetch("/user/signin", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+        if (response.ok) {
+          const data = await response.json();
+          const token = data.token;
+          localStorage.setItem("token", token);
+          window.location.href = `/success?token=${data.token}`;
+        } else {
+          const errorMessage = await response.text();
+          alert("Дані введено некоректно!");
+        }
+      } catch (error) {
+        alert("Сталася помилка під час входу.");
+        console.error("Error:", error);
+      }
+    });
+</script>
+{% endblock body %}
