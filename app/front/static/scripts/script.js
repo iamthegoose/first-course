@@ -20,14 +20,14 @@ function handleClick(e) {
   }
 }
 
-function handleClickLink(e) {
-  e.preventDefault();
-  if (token) {
-    window.location.href = "/create-flats";
-  } else {
-    window.location.href = "/login";
-  }
-}
+// function handleClickLink(e) {
+//   e.preventDefault();
+//   if (token) {
+//     window.location.href = "/create-flats";
+//   } else {
+//     window.location.href = "/login";
+//   }
+// }
 
 const catalogue = document.getElementById("catalogueForm");
 const itemRent = document.querySelector(".menu-item-rent");

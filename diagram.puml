@@ -1,0 +1,54 @@
+@startuml component_diagram
+left to right direction
+
+package "Front-end" {
+  component "HTML" {
+    [index.html]
+    [login.html]
+    [profile-red.html]
+    [profile.html]
+    [registration.html]
+  }
+  component "CSS" {
+    [create-flats-styles.css]
+    [flats-styles.css]
+    [login-styles.css]
+    [main-styles.css]
+    [register-styles.css]
+  }
+  component "JavaScript" {
+    [script.js]
+  }
+}
+
+package "Back-end" {
+  package "Services" {
+    component "Models"{
+        [flat.py]
+        [requests.py]
+        [user.py]
+    }
+    component "Types" {
+      [schema.py]
+      [flatfilters.py]
+    }
+    [security.py]
+    [connection.py]
+    [repositoryflat.py]
+    [repositoryuser.py]
+  }
+  component "Main" {
+    [main.py]
+  }
+}
+
+HTML -down-> JavaScript
+HTML -down-> CSS
+
+JavaScript -down-> Main : API calls
+CSS -down-> HTML : styles
+
+Main -down-> Models : uses
+Main -down-> Types : uses
+
+@enduml

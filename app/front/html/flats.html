@@ -115,7 +115,7 @@
         rooms: document.getElementById("rooms").value,
       };
 
-      console.log(JSON.stringify(formData));
+     // console.log(JSON.stringify(formData));
 
       try {
         const response = await fetch("/user/flats", {
@@ -147,23 +147,22 @@
       }
     });
 
-const listFlats = document.querySelector('.list-flats');
-const listFlatsChildren = listFlats.children;
 
-function itemClick() {
-  const res = confirm("Орендувати цю квартиру?");
-  if (res) {
-    alert("Заявка подана успішно!");
-  } else {
-    return;
+    const listFlats = document.querySelector('.list-flats');
+
+function itemClick(event) {
+  if (event.target && event.target.matches('.list-flats > *')) {
+    const res = confirm("Орендувати цю квартиру?");
+    if (res) {
+      alert("Заявка подана успішно!");
+    } else {
+      return;
+    }
   }
 }
 
+listFlats.addEventListener('click', itemClick);
 
-
-for(const el of listFlatsChildren) {
-  el.addEventListener('click', itemClick)
-}
 
 
 </script>
